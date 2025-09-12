@@ -2,6 +2,8 @@
 
 ```
 sudo dnf update -y
+
+
 sudo dnf install -y docker
 sudo systemctl enable docker
 sudo systemctl start docker
