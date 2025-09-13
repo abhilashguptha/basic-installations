@@ -19,7 +19,7 @@ services:
       start_period: 30s
 
   sonarqube:
-    image: sonarqube:lts-community
+    image: sonarqube:2025.1-community
     restart: unless-stopped
     depends_on:
       - db
