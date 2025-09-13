@@ -75,3 +75,17 @@ echo 'export PATH=$PATH:/opt/sonar-scanner/bin' >> ~/.bashrc
 #    Or call directly when needed:
  /opt/sonar-scanner/bin/sonar-scanner --help
 ```
+
+```
+# temporarily (effective until reboot)
+sudo sysctl -w vm.max_map_count=524288
+sudo sysctl -w fs.file-max=131072
+# increase ulimits for current shell (or set in /etc/security/limits.d/...)
+ulimit -n 131072
+ulimit -u 8192
+
+# to persist across reboots, add to /etc/sysctl.d/99-sonarqube.conf:
+echo "vm.max_map_count=524288" | sudo tee /etc/sysctl.d/99-sonarqube.conf
+echo "fs.file-max=131072" | sudo tee -a /etc/sysctl.d/99-sonarqube.conf
+sudo sysctl --system
+```
